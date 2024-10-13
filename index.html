@@ -106,9 +106,9 @@
             top: 60px;
             right: 0;
             background: linear-gradient(to right, #ff4081, #7b1fa2);
-            width: 100%; /* Ocupa todo el ancho de la pantalla */
-            max-height: 100vh; /* Limita la altura al 100% de la pantalla */
-            overflow-y: auto; /* Habilita scroll si es necesario */
+            width: 100%;
+            max-height: 100vh;
+            overflow-y: auto;
             border-radius: 0 0 8px 8px;
             flex-direction: column;
             align-items: center;
@@ -191,23 +191,23 @@
         /* Media Queries */
         @media (max-width: 768px) {
             .menu {
-                display: none;
+                display: none; /* Ocultamos el menú para dispositivos móviles */
             }
 
             .menu-toggle {
-                display: flex;
+                display: flex; /* Mostramos el botón de menú móvil */
             }
 
-            .menu-toggle.active + .menu-mobile {
-                display: flex;
+            .menu-mobile {
+                display: none; /* Mantenemos oculto el menú móvil por defecto */
             }
 
             .main-content {
-                padding: 10px;
+                padding: 10px; /* Reducimos el padding en móviles */
             }
 
             .gallery-item img {
-                width: 100%; /* Las imágenes se ajustan al ancho del contenedor */
+                width: 100%; /* Aseguramos que las imágenes sean responsivas */
             }
         }
     </style>
@@ -286,14 +286,8 @@
         }
 
         function toggleMobileMenu() {
-            const menuToggle = document.querySelector('.menu-toggle');
             const menuMobile = document.querySelector('.menu-mobile');
-            menuToggle.classList.toggle('active');
-            if (menuMobile.style.display === 'flex') {
-                menuMobile.style.display = 'none';
-            } else {
-                menuMobile.style.display = 'flex';
-            }
+            menuMobile.style.display = menuMobile.style.display === 'flex' ? 'none' : 'flex';
         }
     </script>
 </body>
