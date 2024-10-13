@@ -104,12 +104,15 @@
             display: none;
             position: absolute;
             top: 60px;
-            right: 20px;
+            right: 0;
             background: linear-gradient(to right, #ff4081, #7b1fa2);
-            width: 200px;
-            border-radius: 8px;
+            width: 100%; /* Ocupa todo el ancho de la pantalla */
+            max-height: 100vh; /* Limita la altura al 100% de la pantalla */
+            overflow-y: auto; /* Habilita scroll si es necesario */
+            border-radius: 0 0 8px 8px;
             flex-direction: column;
             align-items: center;
+            z-index: 9999;
         }
 
         .menu-mobile a {
@@ -117,6 +120,7 @@
             width: 100%;
             text-align: center;
             color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* Contenido principal */
@@ -194,10 +198,6 @@
                 display: flex;
             }
 
-            .menu-mobile {
-                display: none;
-            }
-
             .menu-toggle.active + .menu-mobile {
                 display: flex;
             }
@@ -243,6 +243,9 @@
             <a href="#" onclick="navigate('servicios.html')">Servicios</a>
             <a href="#" onclick="openModal('sobre-mi.html')">Sobre Mí</a>
             <a href="#" onclick="navigate('contacto.html')">Contacto</a>
+            <a href="#" onclick="navigate('galeriabasico.html')">Nivel Principiante</a>
+            <a href="#" onclick="navigate('galeriaintermedio.html')">Nivel Intermedio</a>
+            <a href="#" onclick="navigate('galeriaavanzado.html')">Nivel Avanzado</a>
         </div>
     </div>
 
@@ -269,34 +272,17 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            navigate('inicio.html');
-        });
-
-        function navigate(page) {
-            const content = document.getElementById('main-content');
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', page, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    content.innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
-
-        function openModal(contentSrc) {
-            const modal = document.getElementById("myModal");
-            const modalIframe = document.getElementById("modal-iframe");
-            modalIframe.src = contentSrc;
-            modal.style.display = "flex";
+        function openModal(url) {
+            document.getElementById("modal-iframe").src = url;
+            document.getElementById("myModal").style.display = "flex";
         }
 
         function closeModal() {
-            const modal = document.getElementById("myModal");
-            const modalIframe = document.getElementById("modal-iframe");
-            modalIframe.src = "";
-            modal.style.display = "none";
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function navigate(page) {
+            window.location.href = page;
         }
 
         function toggleMobileMenu() {
@@ -312,5 +298,6 @@
     </script>
 </body>
 </html>
+
 
 
