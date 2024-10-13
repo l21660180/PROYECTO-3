@@ -82,10 +82,6 @@
             color: #fff;
         }
 
-        .menu-item:hover .dropdown {
-            display: block;
-        }
-
         /* Icono de hamburguesa para el menú "Actividades" */
         .hamburger {
             display: none;
@@ -149,6 +145,16 @@
             border-radius: 8px; /* Bordes redondeados */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
             flex-grow: 1; /* Permite que el contenido crezca y empuje el footer hacia abajo */
+            display: flex; /* Cambiado a flex para alinear correctamente los elementos */
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias líneas */
+            justify-content: center; /* Centra los elementos de la galería */
+        }
+
+        .gallery-item {
+            cursor: pointer; /* Cambia el cursor al pasar sobre los elementos de la galería */
+            margin: 10px; /* Espaciado entre elementos de la galería */
+            text-align: center; /* Centra el texto debajo de la imagen */
+            flex: 0 1 200px; /* Hace que cada elemento de la galería tenga un ancho mínimo de 200px */
         }
 
         h1 {
@@ -201,12 +207,6 @@
             color: white; /* Color del texto del botón de cerrar */
             cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
         }
-
-        .gallery-item {
-            cursor: pointer; /* Cambia el cursor al pasar sobre los elementos de la galería */
-            margin-bottom: 20px; /* Espacio inferior entre elementos de la galería */
-            text-align: center; /* Centra el texto debajo de la imagen */
-        }
     </style>
 </head>
 <body>
@@ -241,13 +241,13 @@
             <img src="mensaje.png" alt="Actividad 1" style="width: 200px; height: auto;">
             <h2>Actividad 1: Mensaje</h2>
         </div>
-        <!-- Añade más elementos de la galería aquí -->
+        <!-- Añade más elementos de galería aquí -->
     </div>
 
-    <div id="myModal" class="modal">
+    <div class="modal" id="myModal">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-content">
-            <iframe id="modal-iframe" src="" alt="Contenido del modal"></iframe>
+            <iframe id="modal-iframe" src=""></iframe>
         </div>
     </div>
 
