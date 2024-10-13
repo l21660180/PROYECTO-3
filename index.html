@@ -87,17 +87,23 @@
         }
 
         /* Icono de hamburguesa para el menú "Actividades" */
+        /* Icono de hamburguesa para el menú "Actividades" */
         .hamburger {
-            display: none; /* Oculto por defecto */
-            flex-direction: column; /* Coloca las líneas del icono en columna */
+            display: inline-block; /* Alinea el icono de hamburguesa */
             cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+            margin-left: 10px; /* Espacio entre el texto y el icono */
         }
 
         .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            margin: 4px;
+            width: 40px; /* Aumenta el ancho */
+            height: 5px; /* Aumenta la altura */
+            background-color: #ffd700; /* Cambia el color a dorado */
+            margin: 6px 0; /* Aumenta el margen entre las barras */
+            transition: background-color 0.3s; /* Transición para el efecto hover */
+        }
+
+        .hamburger:hover div {
+            background-color: #ffffff; /* Cambia el color al pasar el mouse */
         }
 
         /* Menú móvil */
