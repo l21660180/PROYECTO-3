@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - Proyecto</title>
     <style>
-        /* Estilos generales */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -17,7 +16,6 @@
             min-height: 100vh;
         }
 
-        /* Estilos de la barra de navegación (Navbar) */
         .navbar {
             position: fixed;
             top: 0;
@@ -63,7 +61,6 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Estilos del menú desplegable */
         .dropdown {
             display: none;
             position: absolute;
@@ -86,7 +83,19 @@
             display: block;
         }
 
-        /* Menú móvil */
+        .hamburger {
+            display: inline-block;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px;
+        }
+
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -119,7 +128,6 @@
             color: #fff;
         }
 
-        /* Estilos responsivos */
         @media (max-width: 768px) {
             .menu {
                 display: none;
@@ -134,7 +142,6 @@
             }
         }
 
-        /* Estilos del contenido principal */
         .main-content {
             margin-top: 80px;
             padding: 20px;
@@ -148,16 +155,16 @@
             color: #7b1fa2;
         }
 
-        /* Estilos del footer */
         footer {
             background: linear-gradient(to right, #ff4081, #7b1fa2);
             color: #fff;
             text-align: center;
             padding: 10px 0;
+            position: relative;
+            bottom: 0;
             width: 100%;
         }
 
-        /* Estilos del modal */
         .modal {
             display: none;
             position: fixed;
@@ -221,13 +228,13 @@
                 </div>
             </div>
         </div>
-        <!-- Icono de menú móvil -->
+
+        <!-- Menú móvil -->
         <div class="menu-toggle" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <!-- Menú móvil -->
         <div class="menu-mobile" id="mobile-menu">
             <a href="#" onclick="navigate('inicio.html')">Inicio</a>
             <a href="#" onclick="navigate('servicios.html')">Servicios</a>
@@ -245,13 +252,14 @@
             <img src="mensaje.png" alt="Actividad 1" style="width: 200px; height: auto;">
             <h2>Actividad 1: Mensaje</h2>
         </div>
+        <!-- Agrega más elementos de galería aquí -->
     </div>
 
     <!-- Modal -->
     <div id="myModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-content">
-            <iframe id="modal-iframe" src="" alt="Contenido del Modal"></iframe>
+            <iframe id="modal-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -292,30 +300,15 @@
             modal.style.display = "none";
         }
 
-        window.onkeydown = function(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById
-
-            window.onclick = function(event) {
-            const modal = document.getElementById("myModal");
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-
         function toggleMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
-                mobileMenu.style.display = "flex";
-            } else {
+            const mobileMenu = document.getElementById("mobile-menu");
+            if (mobileMenu.style.display === "flex") {
                 mobileMenu.style.display = "none";
+            } else {
+                mobileMenu.style.display = "flex";
             }
         }
     </script>
 </body>
 </html>
+   
