@@ -1,258 +1,411 @@
 <!DOCTYPE html>
+<!-- Declara que este documento es un archivo HTML5 -->
+
 <html lang="es">
+<!-- Inicia el documento HTML y establece el idioma a español -->
+
 <head>
+    <!-- Contiene información sobre el documento -->
     <meta charset="UTF-8">
+    <!-- Establece la codificación de caracteres a UTF-8 -->
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Asegura que el diseño se ajuste al ancho del dispositivo y la escala inicial sea 1 -->
+
     <title>Menu - Proyecto</title>
+    <!-- Define el título de la pestaña del navegador -->
+
     <style>
         /* Estilos generales */
         body {
             font-family: 'Arial', sans-serif;
+            /* Define la fuente del cuerpo como Arial o sans-serif */
             margin: 0;
+            /* Elimina márgenes por defecto del body */
             padding: 0;
+            /* Elimina relleno por defecto del body */
             background-color: #f9f9f9;
+            /* Establece un color de fondo claro */
             color: #333;
+            /* Define el color del texto */
             display: flex;
+            /* Usa flexbox para el diseño */
             flex-direction: column;
+            /* Organiza los elementos en columna */
             min-height: 100vh;
+            /* Asegura que el cuerpo ocupe al menos la altura completa de la ventana */
         }
 
         /* Estilos de la barra de navegación (Navbar) */
         .navbar {
             position: fixed;
+            /* Fija la barra de navegación en la parte superior */
             top: 0;
+            /* Posiciona la barra en la parte superior */
             width: 100%;
+            /* Hace que la barra ocupe todo el ancho de la ventana */
             background: linear-gradient(to right, #ff4081, #7b1fa2);
+            /* Aplica un fondo de gradiente a la barra */
             color: #fff;
+            /* Establece el color del texto en blanco */
             display: flex;
+            /* Usa flexbox para alinear los elementos */
             justify-content: space-between;
+            /* Distribuye el espacio entre los elementos de la barra */
             align-items: center;
+            /* Centra verticalmente los elementos */
             padding: 10px 20px;
+            /* Agrega relleno dentro de la barra */
             z-index: 1000;
+            /* Asegura que la barra esté por encima de otros elementos */
         }
 
         .navbar .logo {
             display: flex;
+            /* Usa flexbox para alinear los elementos del logo */
             align-items: center;
+            /* Centra verticalmente el logo */
             font-size: 24px;
+            /* Define el tamaño de fuente del logo */
             font-weight: bold;
+            /* Establece el texto en negrita */
             color: #fff;
+            /* Establece el color del texto en blanco */
         }
 
         .navbar .logo img {
             width: 40px;
+            /* Define el ancho de la imagen del logo */
             height: auto;
+            /* Mantiene la proporción de la imagen */
             margin-right: 10px;
+            /* Agrega margen a la derecha de la imagen */
         }
 
         .navbar .menu {
             display: flex;
+            /* Usa flexbox para alinear los elementos del menú */
             gap: 30px;
+            /* Define un espacio entre los elementos del menú */
         }
 
         .navbar a {
             text-decoration: none;
+            /* Elimina el subrayado de los enlaces */
             color: #fff;
+            /* Establece el color del texto de los enlaces en blanco */
             font-size: 18px;
+            /* Define el tamaño de fuente de los enlaces */
             padding: 8px 20px;
+            /* Agrega relleno alrededor de los enlaces */
             border-radius: 4px;
+            /* Redondea las esquinas de los enlaces */
             transition: background-color 0.3s;
+            /* Añade una transición suave para el color de fondo */
         }
 
         .navbar a:hover {
             background-color: rgba(255, 255, 255, 0.2);
+            /* Cambia el fondo del enlace al pasar el mouse */
         }
 
         /* Estilos del menú desplegable */
         .dropdown {
             display: none;
+            /* Oculta el menú desplegable por defecto */
             position: absolute;
+            /* Posiciona el menú de manera absoluta en relación a su contenedor */
             background-color: #ff4081;
+            /* Establece el color de fondo del menú desplegable */
             border-radius: 8px;
+            /* Redondea las esquinas del menú desplegable */
             padding: 10px 0;
+            /* Agrega relleno vertical al menú desplegable */
             min-width: 200px;
+            /* Define un ancho mínimo para el menú */
             z-index: 1000;
+            /* Asegura que el menú esté por encima de otros elementos */
             top: 50px;
+            /* Posiciona el menú debajo de la barra de navegación */
         }
 
         .dropdown a {
             padding: 10px 15px;
+            /* Agrega relleno a los enlaces del menú desplegable */
             display: block;
+            /* Hace que cada enlace ocupe toda la línea */
             white-space: nowrap;
+            /* Evita que el texto se divida en varias líneas */
             color: #fff;
+            /* Establece el color del texto en blanco */
         }
 
         .menu-item:hover .dropdown {
             display: block;
+            /* Muestra el menú desplegable al pasar el mouse sobre el elemento del menú */
         }
 
         /* Icono de hamburguesa para el menú "Actividades" */
         .hamburger {
-            display: none; /* Oculto por defecto */
-            flex-direction: column; /* Coloca las líneas del icono en columna */
-            cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+            display: none;
+            /* Oculto por defecto */
+            flex-direction: column;
+            /* Coloca las líneas del icono en columna */
+            cursor: pointer;
+            /* Cambia el cursor al pasar sobre el icono */
         }
 
         .hamburger div {
             width: 25px;
+            /* Define el ancho de las líneas del icono */
             height: 3px;
+            /* Define el grosor de las líneas del icono */
             background-color: #fff;
+            /* Establece el color de las líneas en blanco */
             margin: 4px;
+            /* Agrega margen entre las líneas */
         }
 
         /* Menú móvil */
         .menu-toggle {
             display: none;
+            /* Oculto por defecto */
             flex-direction: column;
+            /* Coloca las líneas del icono en columna */
             cursor: pointer;
+            /* Cambia el cursor al pasar sobre el icono */
         }
 
         .menu-mobile {
-            display: none; /* Oculto por defecto */
+            display: none;
+            /* Oculto por defecto */
             position: absolute;
+            /* Posiciona el menú de manera absoluta */
             top: 60px;
+            /* Posiciona el menú debajo de la barra de navegación */
             right: 20px;
+            /* Alinea el menú a la derecha */
             background: linear-gradient(to right, #ff4081, #7b1fa2);
+            /* Aplica un fondo de gradiente al menú móvil */
             width: 200px;
+            /* Define el ancho del menú móvil */
             border-radius: 8px;
+            /* Redondea las esquinas del menú móvil */
             flex-direction: column;
+            /* Organiza los elementos en columna */
             align-items: center;
+            /* Centra los elementos en el menú móvil */
         }
 
         .menu-mobile a {
             padding: 10px;
+            /* Agrega relleno a los enlaces del menú móvil */
             width: 100%;
+            /* Hace que los enlaces ocupen todo el ancho */
             text-align: center;
+            /* Centra el texto de los enlaces */
             color: #fff;
+            /* Establece el color del texto en blanco */
         }
 
         /* Estilos responsivos */
         @media (max-width: 768px) {
+            /* Aplica estilos a pantallas de 768px o menos */
             .menu {
-                display: none; /* Oculta el menú en pantallas pequeñas */
+                display: none;
+                /* Oculta el menú en pantallas pequeñas */
             }
 
             .menu-toggle {
-                display: flex; /* Muestra el icono de menú móvil */
+                display: flex;
+                /* Muestra el icono de menú móvil */
             }
 
             .menu-mobile {
-                display: flex; /* Muestra el menú móvil */
+                display: flex;
+                /* Muestra el menú móvil */
             }
 
             .hamburger {
-                display: flex; /* Muestra el icono de hamburguesa */
+                display: flex;
+                /* Muestra el icono de hamburguesa */
             }
         }
 
         /* Estilos del contenido principal */
         .main-content {
             margin-top: 80px;
+            /* Agrega margen superior para no solaparse con la barra de navegación */
             padding: 20px;
+            /* Agrega relleno alrededor del contenido principal */
             background-color: white;
+            /* Establece el color de fondo en blanco */
             border-radius: 8px;
+            /* Redondea las esquinas del contenido principal */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* Aplica una sombra suave al contenido */
             flex-grow: 1;
+            /* Permite que el contenido principal crezca para ocupar el espacio disponible */
         }
 
         h1 {
             color: #7b1fa2;
+            /* Establece el color del encabezado en un tono púrpura */
         }
 
         /* Estilos del footer */
         footer {
             background: linear-gradient(to right, #ff4081, #7b1fa2);
+            /* Aplica un fondo de gradiente al pie de página */
             color: #fff;
+            /* Establece el color del texto en blanco */
             text-align: center;
+            /* Centra el texto del pie de página */
             padding: 10px 0;
+            /* Agrega relleno vertical al pie de página */
             width: 100%;
+            /* Hace que el pie de página ocupe todo el ancho de la ventana */
         }
 
         /* Estilos del modal */
         .modal {
             display: none;
+            /* Oculta el modal por defecto */
             position: fixed;
+            /* Fija el modal en relación a la ventana */
             z-index: 1000;
+            /* Asegura que el modal esté por encima de otros elementos */
             left: 0;
+            /* Posiciona el modal a la izquierda */
             top: 0;
+            /* Posiciona el modal en la parte superior */
             width: 100%;
+            /* Hace que el modal ocupe todo el ancho de la ventana */
             height: 100%;
+            /* Hace que el modal ocupe toda la altura de la ventana */
             background-color: rgba(0, 0, 0, 0.8);
+            /* Establece un fondo oscuro semitransparente */
             justify-content: center;
+            /* Centra el contenido del modal */
             align-items: center;
+            /* Centra verticalmente el contenido del modal */
         }
 
         .modal-content {
             position: relative;
+            /* Posiciona el contenido del modal en relación al modal */
             max-width: 80%;
+            /* Establece un ancho máximo para el contenido del modal */
             max-height: 80%;
+            /* Establece una altura máxima para el contenido del modal */
         }
 
         .modal-content iframe {
             width: 100%;
+            /* Hace que el iframe ocupe todo el ancho del contenido del modal */
             height: 90vh;
+            /* Define la altura del iframe */
             border: none;
+            /* Elimina el borde del iframe */
             border-radius: 8px;
+            /* Redondea las esquinas del iframe */
         }
 
         .close {
             position: absolute;
+            /* Posiciona el botón de cerrar de manera absoluta dentro del modal */
             top: 10px;
+            /* Posiciona el botón de cerrar en la parte superior */
             right: 20px;
+            /* Alinea el botón de cerrar a la derecha */
             font-size: 24px;
+            /* Define el tamaño de fuente del botón de cerrar */
             color: white;
+            /* Establece el color del texto del botón de cerrar en blanco */
             cursor: pointer;
+            /* Cambia el cursor al pasar sobre el botón de cerrar */
         }
 
         .gallery-item {
             cursor: pointer;
+            /* Cambia el cursor al pasar sobre los elementos de la galería */
             margin-bottom: 20px;
+            /* Agrega margen inferior a los elementos de la galería */
             text-align: center;
+            /* Centra el texto de los elementos de la galería */
         }
     </style>
 </head>
 <body>
     <!-- Barra de navegación -->
     <div class="navbar">
+        <!-- Contenedor principal de la barra de navegación -->
         <div class="logo">
+            <!-- Contenedor del logo -->
             <img src="fantasma.png" alt="Logo">
+            <!-- Imagen del logo -->
             ACTIVIDADES DE LA UNIDAD 3
+            <!-- Título del logo -->
         </div>
         <div class="menu">
+            <!-- Contenedor del menú de navegación -->
             <a href="#" onclick="navigate('inicio.html')">Inicio</a>
+            <!-- Enlace a la página de inicio -->
             <a href="#" onclick="navigate('servicios.html')">Servicios</a>
+            <!-- Enlace a la página de servicios -->
             <a href="#" onclick="openModal('sobre-mi.html')">Sobre Mí</a>
+            <!-- Enlace que abre un modal con información sobre el autor -->
             <a href="#" onclick="navigate('contacto.html')">Contacto</a>
+            <!-- Enlace a la página de contacto -->
             <div class="menu-item">
+                <!-- Contenedor para el menú desplegable de actividades -->
                 <a href="#">Actividades</a>
+                <!-- Enlace para abrir el menú de actividades -->
                 <div class="hamburger" onclick="toggleDropdown()">
+                    <!-- Icono de hamburguesa que despliega el menú -->
                     <div></div>
                     <div></div>
                     <div></div>
                 </div>
                 <div class="dropdown">
+                    <!-- Menú desplegable de actividades -->
                     <a href="#" onclick="navigate('galeriabasico.html')">Nivel Principiante</a>
+                    <!-- Enlace a la galería de nivel principiante -->
                     <a href="#" onclick="navigate('galeriaintermedio.html')">Nivel Intermedio</a>
+                    <!-- Enlace a la galería de nivel intermedio -->
                     <a href="#" onclick="navigate('galeriaavanzado.html')">Nivel Avanzado</a>
+                    <!-- Enlace a la galería de nivel avanzado -->
                 </div>
             </div>
         </div>
         <div class="menu-toggle" onclick="toggleMobileMenu()">
+            <!-- Icono de menú móvil que despliega el menú -->
             <div></div>
             <div></div>
             <div></div>
         </div>
         <div class="menu-mobile">
+            <!-- Menú desplegable para dispositivos móviles -->
             <a href="#" onclick="navigate('inicio.html')">Inicio</a>
+            <!-- Enlace a la página de inicio -->
             <a href="#" onclick="navigate('servicios.html')">Servicios</a>
+            <!-- Enlace a la página de servicios -->
             <a href="#" onclick="openModal('sobre-mi.html')">Sobre Mí</a>
+            <!-- Enlace que abre un modal con información sobre el autor -->
             <a href="#" onclick="navigate('contacto.html')">Contacto</a>
+            <!-- Enlace a la página de contacto -->
             <div class="menu-item">
+                <!-- Contenedor para el menú desplegable de actividades -->
                 <a href="#">Actividades</a>
+                <!-- Enlace para abrir el menú de actividades -->
                 <div class="dropdown">
+                    <!-- Menú desplegable de actividades para móvil -->
                     <a href="#" onclick="navigate('galeriabasico.html')">Nivel Principiante</a>
+                    <!-- Enlace a la galería de nivel principiante -->
                     <a href="#" onclick="navigate('galeriaintermedio.html')">Nivel Intermedio</a>
+                    <!-- Enlace a la galería de nivel intermedio -->
                     <a href="#" onclick="navigate('galeriaavanzado.html')">Nivel Avanzado</a>
+                    <!-- Enlace a la galería de nivel avanzado -->
                 </div>
             </div>
         </div>
@@ -260,24 +413,33 @@
 
     <!-- Área de contenido principal -->
     <div class="main-content" id="main-content">
+        <!-- Contenedor principal del contenido -->
         <div class="gallery-item" onclick="openModal('ActividadesP/Actividad1Mensaje.html')">
+            <!-- Elemento de la galería que abre un modal al hacer clic -->
             <img src="mensaje.png" alt="Actividad 1" style="width: 200px; height: auto;">
+            <!-- Imagen de la actividad -->
             <h2>Actividad 1: Mensaje</h2>
+            <!-- Título de la actividad -->
         </div>
         <!-- Añade más elementos de la galería aquí -->
     </div>
 
     <!-- Modal -->
     <div id="myModal" class="modal">
+        <!-- Contenedor del modal -->
         <span class="close" onclick="closeModal()">&times;</span>
+        <!-- Botón de cerrar el modal -->
         <div class="modal-content">
+            <!-- Contenedor para el contenido del modal -->
             <iframe id="modal-iframe" src="" alt="Contenido del Modal"></iframe>
+            <!-- Iframe que muestra el contenido del modal -->
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
         &copy; 2024 Proyecto. Todos los derechos reservados.
+        <!-- Texto de derechos de autor -->
     </footer>
 
     <!-- JavaScript para la funcionalidad del menú -->
@@ -285,19 +447,23 @@
         // Carga automáticamente la página de inicio al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
             navigate('inicio.html');
+            // Navega a la página de inicio al cargar el documento
         });
 
         function navigate(page) {
             const mainContent = document.getElementById('main-content');
             mainContent.innerHTML = '<h1>Cargando...</h1>';
+            // Muestra un mensaje de carga
             setTimeout(() => {
                 fetch(page)
                     .then(response => response.text())
                     .then(data => {
                         mainContent.innerHTML = data;
+                        // Actualiza el contenido principal con la respuesta del servidor
                     })
                     .catch(error => {
                         mainContent.innerHTML = '<h1>Error al cargar la página</h1>';
+                        // Muestra un mensaje de error si la carga falla
                     });
             }, 500); // Simula un pequeño retraso para la carga
         }
@@ -319,11 +485,13 @@
         function toggleDropdown() {
             const dropdown = document.querySelector('.dropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            // Alterna la visibilidad del menú desplegable
         }
 
         function toggleMobileMenu() {
             const menuMobile = document.querySelector('.menu-mobile');
             menuMobile.style.display = menuMobile.style.display === 'flex' ? 'none' : 'flex';
+            // Alterna la visibilidad del menú móvil
         }
     </script>
 </body>
